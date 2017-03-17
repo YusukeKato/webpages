@@ -234,6 +234,7 @@
                 battle();
               } else if( stage == 6 ) {
                 flag_teki = true;
+                stage += 1;
                 battle();
               } else {
                   document.getElementById("text003").textContent = tink.na+"は次の場所へ";
@@ -297,11 +298,11 @@
       if( flag_mao ) {
         document.getElementById("text003").textContent = "魔王";
         var ele = 100;
-        var ehp = 30000;
-        var eat = 10000;
-        var ede = 10000;
+        var ehp = 10000;
+        var eat = 5000;
+        var ede = 5000;
         var emo = 100000;
-        var eex = 50000;
+        var eex = 10000;
         var enemy = new Chara("魔王",ele,ehp,eat,ede,emo,eex);
       }
       else if( flag_dragon ) {
@@ -310,21 +311,21 @@
         var ehp = 1000;
         var eat = 500;
         var ede = 500;
-        var emo = 2000;
-        var eex = 500;
+        var emo = 5000;
+        var eex = 1000;
         var enemy = new Chara("やみつきドラゴン",ele,ehp,eat,ede,emo,eex);
         flag_dragon = false;
       }
       else if( flag_teki ) {
         document.getElementById("text003").textContent = "ここからここまで";
         var ele = 50;
-        var ehp = 2000;
+        var ehp = 5000;
         var eat = 1000;
         var ede = 1000;
         var emo = 10000;
         var eex = 3000;
         var enemy = new Chara("ここからここまで",ele,ehp,eat,ede,emo,eex);
-        flag_dragon = false;
+        flag_teki = false;
       }
       else if( rand == 0 || rand == 1 ) {
         document.getElementById("text003").textContent = "勇者タナカ";
@@ -541,7 +542,7 @@
     function shop(flag_s) {
       if( flag_s == 1 || flag_s == 3 ) {
         if( tink.mo >= cost ) {
-          var up1 = stage * tink.le * 5;
+          var up1 = stage * 5;
           if( flag_s == 1 ) {
             document.getElementById("text003").textContent = "剣を手に入れた！！";
             document.getElementById("text004").textContent = up1+"攻撃力が上がった！！";
@@ -561,7 +562,7 @@
       else if( flag_s == 2 || flag_s == 4 ) {
         var cost5 = cost * 5;
         if( tink.mo >= cost5 ) {
-          var up2 = stage * tink.le * 6 * 5;
+          var up2 = stage * 6 * 5;
           if( flag_s == 2 ) {
             document.getElementById("text003").textContent = "剣を５本手に入れた！！";
             document.getElementById("text004").textContent = up2+"攻撃力が上がった！！";
@@ -636,9 +637,9 @@
       while( true ) {
         if( tink.ex >= exe_point + 40 ) {
           tink.le += 1;
-          exe_point += tink.le * tink.le * 100;
+          exe_point += tink.le * tink.le * 30;
           tink.hp += tink.le * 50;
-          tink.ap += tink.le * 5;
+          tink.ap += tink.le * 10;
           tink.de += tink.le * 5;
           document.getElementById("text005").textContent = "レベルが上がった！！ "+tink.le+"レベルになった！！";
         }
