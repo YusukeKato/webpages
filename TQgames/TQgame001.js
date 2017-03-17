@@ -12,10 +12,13 @@
     var onflag = false;//GOボタンを押したかどうか
     var stage = 1;//ステージ番号
     var exe_point = 1;
-    var flag_shop = false;//店入店時
+    var flag_mode = 0;//モード切り替え
     var flag_mao = false;//魔王
     var cost = 300 * stage;
     var flag_chara_init = true;//無駄なフラグだが必要
+    var sumT = 0;//カジノで使う、本当はこんなところで宣言しない
+    var black1 = 0;
+    var black2 = 0;
 
     class Chara {
       constructor(name,level,hp,attack,defence,money,exe) {
@@ -42,7 +45,13 @@
       tink.de = Math.floor( Math.random() * 10 ) + 3;
       tink.mo = Math.floor( Math.random() * 1200 ) + 300;
       tink.ex = 0;
-      if( tink.hp % 10 == 0 ) tink.na = "勇者ティンク";
+      if( tink.hp % 10 == 0 ) {
+        tink.na = "勇者ティンク";
+        tink.hp *= 2;
+        tink.at *= 2;
+        tink.de *= 2;
+        tink.mo *= 2;
+      }
       else if( tink.hp % 5 == 0 ) tink.na = "冒険者ティンク";
       else if( tink.hp % 8 == 0 ) tink.na = "魔法使いティンク";
       else if( tink.hp % 7 == 0 ) tink.na = "棋士見習いティンク";
@@ -86,36 +95,60 @@
         chara_init();
         flag_chara_init = false;
       }
-      if( !flag_shop ) {
+      if( flag_mode == 0 ) {
         if( stage >= 10 ) {
           document.getElementById("text003").textContent ="\
           1 : 魔物と戦う 2 : お店で買い物 3 : 宿屋で休憩\n\
           4 : パラメータ 5 : 魔王との決戦へ";
-        } else {
+        }
+        else if( stage == 7 ) {
+          document.getElementById("text003").textContent ="\
+          1 : 魔物と戦う 2 : カジノで荒稼ぎ 3 : 宿屋で休憩\n\
+          4 : パラメータ 5 : 次の場所へ";
+        }
+        else {
           document.getElementById("text003").textContent ="\
           1 : 魔物と戦う 2 : お店で買い物 3 : 宿屋で休憩\n\
           4 : パラメータ 5 : 次の場所へ";
         }
+        document.getElementById("text004").textContent = "１～５を選択して、GOボタンを押してね";
       }
-      else if( flag_shop ) {
+      else if( flag_mode == 1 ) {
         document.getElementById("text003").textContent ="\
         1 : 剣"+cost+"円"+"  2 : 剣５本\n\
         3 : 盾"+cost+"円"+"  4 : 盾５個  5 : 店を出る";
+        document.getElementById("text004").textContent = "１～５を選択して、GOボタンを押してね";
       }
-      document.getElementById("text004").textContent = "１～５を選択して、GOボタンを押してね";
+      else if( flag_mode == 2 ) {
+        document.getElementById("text003").textContent = "ブラックジャック！！\n合計２１を目指せ！！";
+        document.getElementById("text004").textContent ="\
+        1 : まだひく 2 : これで勝負 3 : なし\n\
+        4 : なし 5 : なし\n\
+        現在の自分の合計:"+sumT;
+      }
       document.getElementById("text005").textContent = "";
     }
 
     function Eventfunc() {
       init();
       if(onflag) {
-        if( !flag_shop ) {
+        if( flag_mode == 0 ) {
           switch(flag) {
             case 1:
               battle();
               break;
             case 2:
-              flag_shop = true;
+              if( stage == 7 ) {
+                if( tink.mo >= 300 ) {
+                  black1 = Math.floor( Math.random() * 10 ) + 1;
+                  black2 = Math.floor( Math.random() * 10 ) + 1;
+                  sumT = black1 + black2;
+                  flag_mode = 2;
+                } else {
+                  document.getElementById("text003").textContent = "お金が足りない。。。\n３００円必要";
+                }
+              }
+              else flag_mode = 1;//お店へ
               break;
             case 3:
               inn();
@@ -136,7 +169,7 @@
               break;
           }
         }
-        else if( flag_shop ) {
+        else if( flag_mode == 1 ) {
           switch( flag ) {
             case 1:
               shop( flag );
@@ -151,10 +184,27 @@
               shop( flag );
               break;
             case 5:
-              flag_shop = false;
+              flag_mode = 0;
               break;
             default:
-              flag_shop = false;
+              break;
+          }
+        }
+        else if( flag_mode == 2 ) {
+          switch( flag ) {
+            case 1:
+              casino( flag );
+              break;
+            case 2:
+              casino( flag );
+              break;
+            case 3:
+              break;
+            case 4:
+              break;
+            case 5:
+              break;
+            default:
               break;
           }
         }
@@ -253,7 +303,7 @@
       else if( rand <= 60 ) {
         document.getElementById("text003").textContent = "雪でできた男";
         var ele = Math.floor( Math.random() * tink.le * 10 ) + tink.le*3;
-        var ehp = Math.floor( Math.random() * stage * 300 ) + stage * 100;
+        var ehp = Math.floor( Math.random() * stage * 200 ) + stage * 50;
         var eat = Math.floor( Math.random() * stage * 10 ) + stage * 1;
         var ede = Math.floor( Math.random() * stage * 6 ) + stage * 1;
         var emo = Math.floor( Math.random() * stage * 600 ) + stage * 100;
@@ -283,7 +333,7 @@
       else if( rand <= 85 ) {
         document.getElementById("text003").textContent = "何でも屋";
         var ele = Math.floor( Math.random() * tink.le * 3 ) + tink.le*1;
-        var ehp = Math.floor( Math.random() * stage * 150 ) + stage * 80;
+        var ehp = Math.floor( Math.random() * stage * 120 ) + stage * 50;
         var eat = Math.floor( Math.random() * stage * 80 ) + stage * 20;
         var ede = Math.floor( Math.random() * stage * 15 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 1000 ) + stage * 800;
@@ -293,7 +343,7 @@
       else if( rand <= 90 ) {
         document.getElementById("text003").textContent = "夢見る悪魔";
         var ele = Math.floor( Math.random() * tink.le * 20 ) + tink.le*10;
-        var ehp = Math.floor( Math.random() * stage * 200 ) + stage * 100;
+        var ehp = Math.floor( Math.random() * stage * 100 ) + stage * 60;
         var eat = Math.floor( Math.random() * stage * 50 ) + stage * 20;
         var ede = Math.floor( Math.random() * stage * 10 ) + stage * 2;
         var emo = Math.floor( Math.random() * stage * 800 ) + stage * 100;
@@ -464,9 +514,9 @@
 
     function level_up() {
       while( true ) {
-        if( tink.ex >= exe_point + 50 ) {
+        if( tink.ex >= exe_point + 30 ) {
           tink.le += 1;
-          exe_point += tink.le * 40;
+          exe_point += tink.le * 30;
           tink.hp += tink.le * 10;
           tink.ap += tink.le * 5;
           tink.de += tink.le;
@@ -477,4 +527,38 @@
         }
       }
     }
+
+    function casino( flag ) {
+      if( flag == 1 ) {
+        sumT += Math.floor( Math.random() * 10 ) + 1;
+      }
+      else if( flag == 2 ) {
+        var sumE = 0;
+        while ( true ) {
+          sumE += Math.floor( Math.random() * 10 ) + 1;
+          if( sumE >= 16 ) break;
+        }
+        if( sumT > 21 ) {
+          document.getElementById("text004").textContent = "自分合計:"+sumT+"相手合計:"+sumE+"\n負けました。。。　お金が減った。。。";
+          if( tink.mo <=  300 ) tink.mo = 2;
+          tink.mo /= 2;
+          flag_mode = 0;
+        }
+        else if( sumE > 21 ) {
+          document.getElementById("text004").textContent = "自分合計:"+sumT+"相手合計:"+sumE+"\n勝ちました！！　お金が２倍！！";
+          tink.mo *= 2;
+          flag_mode = 0;
+        }
+        else if( sumE >= sumT ) {
+          document.getElementById("text004").textContent = "自分合計:"+sumT+"相手合計:"+sumE+"\n負けました。。。　お金が減った。。。";
+          if( tink.mo <= 300 ) tink.mo = 2;
+          tink.mo /= 2;
+          flag_mode = 0;
+        } else {
+          document.getElementById("text004").textContent = "自分合計:"+sumT+"相手合計:"+sumE+"\n勝ちました！！　お金が２倍！！";
+          tink.mo *= 2;
+          flag_mode = 0;
+        }
+      }
+    }//casino
 }());
