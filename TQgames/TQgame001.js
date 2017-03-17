@@ -479,12 +479,12 @@
       else if( flag_s == 2 || flag_s == 4 ) {
         var cost5 = cost * 5;
         if( tink.mo >= cost5 ) {
-          var up = stage * 30 * 5;
-          if( flag_s == 1 ) {
+          var up = stage * 20 * 5;
+          if( flag_s == 2 ) {
             document.getElementById("text003").textContent = "剣を５本手に入れた！！";
             document.getElementById("text004").textContent = up+"攻撃力が上がった！！";
             tink.at += up;
-          } else if( flag_s == 3 ) {
+          } else if( flag_s == 4 ) {
             document.getElementById("text003").textContent = "盾を５個手に入れた！！";
             document.getElementById("text004").textContent = up+"防御力が上がった！！";
             tink.de += up;
