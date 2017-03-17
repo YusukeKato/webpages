@@ -121,32 +121,46 @@
       if( flag_mode == 0 ) {
         if( stage >= 10 ) {
           document.getElementById("text003").textContent ="\
-        1 : 魔物と戦う 2 : お店で買い物 3 : 宿屋で休憩\n\
-        4 : パラメータ 5 : 魔王との決戦へ";
+        1 : 魔物と戦う 2 : お店で買い物\n\
+        \n\
+        3 : 宿屋で休憩 4 : パラメータ\n\
+        \n\
+        5 : 魔王との決戦へ";
         }
         else if( stage == 7 ) {
           document.getElementById("text003").textContent ="\
-        1 : 魔物と戦う 2 : カジノで荒稼ぎ 3 : 宿屋で休憩\n\
-        4 : パラメータ 5 : 次の場所へ";
+        1 : 魔物と戦う 2 : カジノで荒稼ぎ\n\
+        \n\
+        3 : 宿屋で休憩 4 : パラメータ\n\
+        \n\
+        5 : 次の場所へ";
         }
         else {
           document.getElementById("text003").textContent ="\
-        1 : 魔物と戦う 2 : お店で買い物 3 : 宿屋で休憩\n\
-        4 : パラメータ 5 : 次の場所へ";
+        1 : 魔物と戦う 2 : お店で買い物\n\
+        \n\
+        3 : 宿屋で休憩 4 : パラメータ\n\
+        \n\
+        5 : 次の場所へ";
         }
-        document.getElementById("text004").textContent = "１～５を選択して、GOボタンを押してね";
+        document.getElementById("text004").textContent = "１～５を選択して、GOボタンを押してね\nとりあえず、困ったらGOボタン！！";
       }
       else if( flag_mode == 1 ) {
         document.getElementById("text003").textContent ="\
       1 : 剣"+cost+"円"+"  2 : 剣５本\n\
-      3 : 盾"+cost+"円"+"  4 : 盾５個  5 : 店を出る";
-        document.getElementById("text004").textContent = "１～５を選択して、GOボタンを押してね";
+      \n\
+      3 : 盾"+cost+"円"+"  4 : 盾５個\n\
+      \n\
+      5 : 店を出る";
+        document.getElementById("text004").textContent = "１～５を選択して、GOボタンを押してね\nとりあえず、困ったらGOボタン！！";
       }
       else if( flag_mode == 2 ) {
         document.getElementById("text003").textContent = "ブラックジャック！！\n合計２１を目指せ！！";
         document.getElementById("text004").textContent ="\
-      1 : まだひく 2 : これで勝負 3 : なし\n\
-      4 : なし 5 : なし\n\
+      1 : まだひく 2 : これで勝負\n\
+      \n\
+      3 : なし 4 : なし 5 : なし\n\
+      \n\
       現在の自分の合計:"+sumT;
       }
       document.getElementById("text005").textContent = "";
@@ -465,12 +479,12 @@
       else if( flag_s == 2 || flag_s == 4 ) {
         var cost5 = cost * 5;
         if( tink.mo >= cost5 ) {
-          var up = stage * 30 * 5;
-          if( flag_s == 1 ) {
+          var up = stage * 20 * 5;
+          if( flag_s == 2 ) {
             document.getElementById("text003").textContent = "剣を５本手に入れた！！";
             document.getElementById("text004").textContent = up+"攻撃力が上がった！！";
             tink.at += up;
-          } else if( flag_s == 3 ) {
+          } else if( flag_s == 4 ) {
             document.getElementById("text003").textContent = "盾を５個手に入れた！！";
             document.getElementById("text004").textContent = up+"防御力が上がった！！";
             tink.de += up;

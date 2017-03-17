@@ -6,14 +6,14 @@ div {
 }
 #panel_button {
     left: 10px;
-    top: 500px;
+    top: 600px;
     width: 800px;
     height: 190px;
     background-color: #88FF88;
 }
 #panel_return {
     left: 10px;
-    top: 700px;
+    top: 800px;
     width: 800px;
     height: 80px;
     background-color: #FF8888;
