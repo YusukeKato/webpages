@@ -22,6 +22,10 @@
     var sumT = 0;//カジノで使う、本当はこんなところで宣言しない
     var black1 = 0;
     var black2 = 0;
+    var attack_up = 1
+    var defence_up = 1
+    var money_up = 1
+    var hp_up = 1
 
     class Chara {
       constructor(name,level,hp,attack,defence,money,exe) {
@@ -41,6 +45,10 @@
     var tink = new Chara("村人",1,0,0,0,0,0);
 
     function chara_init() {
+      hp_up = 1;
+      attack_up = 1;
+      defence_up = 1;
+      money_up = 1;
       /* 乱数取得 */
       tink.le = 1;
       tink.hp = Math.floor( Math.random() * 100 ) + 200;
@@ -52,6 +60,8 @@
         tink.na = "破壊神";
         tink.hp *= 10;
         tink.at *= 10;
+        hp_up = 2;
+        attack_up = 2;
       }
       else if( tink.hp % 50 == 0 ) {
         tink.na = "大富豪";
@@ -63,24 +73,32 @@
         tink.at *= 5;
         tink.de *= 5;
         tink.mo *= 5;
+        hp_up = 2;
+        attack_up = 2;
+        defence_up = 2;
+        money_up = 2;
       }
       else if( tink.hp % 10 == 0 ) {
         tink.na = "魔女";
         tink.at *= 3;
+        attack_up = 2;
       }
       else if( tink.hp % 5 == 0 ) {
         tink.na = "冒険者";
         tink.hp *= 4;
+        hp_up = 2;
       }
       else if( tink.hp % 7 == 0 ) {
         tink.na = "棋士見習い";
         tink.hp *= 2;
         tink.de *= 3;
+        defence_up = 2;
       }
       else if( tink.hp % 9 == 0 ) {
         tink.na = "盗賊";
         tink.de *= 4;
         tink.mo *= 5;
+        money_up = 2;
       }
       else if( tink.hp % 3 == 0 ) {
         tink.na = "狩人";
@@ -161,7 +179,7 @@
         \n\
         3 : 宿屋で休憩 4 : パラメータ\n\
         \n\
-        5 : 次の場所へ";
+        5 : 次のSTAGEへ";
         }
         else {
           document.getElementById("text003").textContent ="\
@@ -169,7 +187,7 @@
         \n\
         3 : 宿屋で休憩 4 : パラメータ\n\
         \n\
-        5 : 次の場所へ";
+        5 : 次のSTAGEへ";
         }
         document.getElementById("text004").textContent = "１～５を選択して、GOボタンを押してね\nとりあえず、困ったらGOボタン！！";
       }
@@ -237,7 +255,7 @@
                 stage += 1;
                 battle();
               } else {
-                  document.getElementById("text003").textContent = tink.na+"は次の場所へ";
+                  document.getElementById("text003").textContent = tink.na+"は次のSTAGEへ";
                   stage += 1;
               }
               break;
@@ -317,21 +335,21 @@
         flag_dragon = false;
       }
       else if( flag_teki ) {
-        document.getElementById("text003").textContent = "ここからここまで";
+        document.getElementById("text003").textContent = "例のあいつ";
         var ele = 50;
         var ehp = 5000;
         var eat = 1000;
         var ede = 1000;
         var emo = 10000;
         var eex = 3000;
-        var enemy = new Chara("ここからここまで",ele,ehp,eat,ede,emo,eex);
+        var enemy = new Chara("例のあいつ",ele,ehp,eat,ede,emo,eex);
         flag_teki = false;
       }
       else if( rand == 0 || rand == 1 ) {
         document.getElementById("text003").textContent = "勇者タナカ";
         var ele = Math.floor( Math.random() * tink.le * 10 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * tink.le * 30 ) + tink.le * 30;
-        var eat = Math.floor( Math.random() * tink.le * 20 ) + tink.le * 20;
+        var ehp = Math.floor( Math.random() * tink.le * 40 ) + tink.le * 40;
+        var eat = Math.floor( Math.random() * tink.le * 20 ) + tink.le * 30;
         var ede = Math.floor( Math.random() * tink.le * 20 ) + tink.le * 20;
         var emo = Math.floor( Math.random() * tink.le * 1000 ) + tink.le * 1000;
         var eex = Math.floor( Math.random() * tink.le * tink.le * 30 ) + tink.le * tink.le * 30;
@@ -340,9 +358,9 @@
       else if( rand <= 10 ) {
         document.getElementById("text003").textContent = "DJ.コマツナ";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 20;
-        var eat = Math.floor( Math.random() * stage * 15 ) + stage * 25;
-        var ede = Math.floor( Math.random() * stage * 5 ) + stage * 10;
+        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 25 + ele * 2;
+        var eat = Math.floor( Math.random() * stage * 20 ) + stage * 30 + ele;
+        var ede = Math.floor( Math.random() * stage * 5 ) + stage * 10 + ele;
         var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
         var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 5;
         var enemy = new Chara("DJ.コマツナ",ele,ehp,eat,ede,emo,eex);
@@ -350,7 +368,7 @@
       else if( rand <= 18 ) {
         document.getElementById("text003").textContent = "空飛ぶシイタケ";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 30;
+        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 40;
         var eat = Math.floor( Math.random() * stage * 15 ) + stage * 20;
         var ede = Math.floor( Math.random() * stage * 10 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 50 ) + stage * 250;
@@ -360,7 +378,7 @@
       else if( rand <= 24 ) {
         document.getElementById("text003").textContent = "お金持ち";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 30;
+        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 40;
         var eat = Math.floor( Math.random() * stage * 15 ) + stage * 20;
         var ede = Math.floor( Math.random() * stage * 10 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 1000 ) + stage * 1000;
@@ -370,7 +388,7 @@
       else if( rand <= 30 ) {
         document.getElementById("text003").textContent = "歩く田中";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 20;
+        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 30;
         var eat = Math.floor( Math.random() * stage * 10 ) + stage * 15;
         var ede = Math.floor( Math.random() * stage * 8 ) + stage * 8;
         var emo = Math.floor( Math.random() * stage * 200 ) + stage * 150;
@@ -390,7 +408,7 @@
       else if( rand <= 45 ) {
         document.getElementById("text003").textContent = "明日への光";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 20;
+        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 30;
         var eat = Math.floor( Math.random() * stage * 10 ) + stage * 15;
         var ede = Math.floor( Math.random() * stage * 12 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 80 ) + stage * 220;
@@ -410,7 +428,7 @@
       else if( rand <= 60 ) {
         document.getElementById("text003").textContent = "雪でできた男";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 10 ) + stage * 20;
+        var ehp = Math.floor( Math.random() * stage * 40 ) + stage * 20;
         var eat = Math.floor( Math.random() * stage * 12 ) + stage * 18;
         var ede = Math.floor( Math.random() * stage * 5 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 150 ) + stage * 150;
@@ -430,7 +448,7 @@
       else if( rand <= 77 ) {
         document.getElementById("text003").textContent = "欲張りガール";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 14 ) + stage * 20;
+        var ehp = Math.floor( Math.random() * stage * 30 ) + stage * 20;
         var eat = Math.floor( Math.random() * stage * 14 ) + stage * 15;
         var ede = Math.floor( Math.random() * stage * 10 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 200 ) + stage * 300;
@@ -440,8 +458,8 @@
       else if( rand <= 85 ) {
         document.getElementById("text003").textContent = "何でも屋";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 14 ) + stage * 20;
-        var eat = Math.floor( Math.random() * stage * 13 ) + stage * 13;
+        var ehp = Math.floor( Math.random() * stage * 30 ) + stage * 20;
+        var eat = Math.floor( Math.random() * stage * 15 ) + stage * 20;
         var ede = Math.floor( Math.random() * stage * 10 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
         var eex = Math.floor( Math.random() * stage * stage * 2 ) + stage * stage * 10;
@@ -450,8 +468,8 @@
       else if( rand <= 90 ) {
         document.getElementById("text003").textContent = "夢見る悪魔";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 25 ) + stage * 20;
-        var eat = Math.floor( Math.random() * stage * 15 ) + stage * 20;
+        var ehp = Math.floor( Math.random() * stage * 30 ) + stage * 30;
+        var eat = Math.floor( Math.random() * stage * 30 ) + stage * 40;
         var ede = Math.floor( Math.random() * stage * 5 ) + stage * 5;
         var emo = Math.floor( Math.random() * stage * 300 ) + stage * 300;
         var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 12;
@@ -460,8 +478,8 @@
       else if( rand <= 92 ) {
         document.getElementById("text003").textContent = "今世紀最強の騎士";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 40 ) + stage * 40;
-        var eat = Math.floor( Math.random() * stage * 20 ) + stage * 20;
+        var ehp = Math.floor( Math.random() * stage * 40 ) + stage * 50;
+        var eat = Math.floor( Math.random() * stage * 50 ) + stage * 20;
         var ede = Math.floor( Math.random() * stage * 20 ) + stage * 20;
         var emo = Math.floor( Math.random() * stage * 500 ) + stage * 500;
         var eex = Math.floor( Math.random() * stage * stage * 20 ) + stage * stage * 20;
@@ -496,7 +514,7 @@
       var dameT = 0;
       var dameE = 0;
       var count = 0;
-      var eneatk = Math.floor( Math.random() * 2 );
+      var eneatk = Math.floor( Math.random() * 1 );
       if( eneatk == 0 ) {
         dame2 = enemy.at;
         if( dame2 <= 0 ) dame2 = Math.floor( Math.random() * tink.le * 10 ) + 1;
@@ -528,7 +546,7 @@
         }
         else if( enemy.hp <= 0 ) {
           document.getElementById("text004").textContent = "合計"+dameT+"のダメージを与えた\n\n"+"合計"+dameE+"のダメージを受けた\n\n"+tink.na+"は勝ちました！！\n\n"+enemy.mo+"円と"+enemy.ex+"の経験値"+"を手に入れました！！";
-          tink.mo += enemy.mo;
+          tink.mo += enemy.mo * money_up;
           tink.ex += enemy.ex;
           flag_battle = false;
           if( flag_mao ) flag_mao2 = true;
@@ -544,13 +562,15 @@
         if( tink.mo >= cost ) {
           var up1 = stage * 5;
           if( flag_s == 1 ) {
+            up1 *= attack_up;
             document.getElementById("text003").textContent = "剣を手に入れた！！";
             document.getElementById("text004").textContent = up1+"攻撃力が上がった！！";
             tink.at += up1;
           } else if( flag_s == 3 ) {
+            up1 *= defence_up;
             document.getElementById("text003").textContent = "盾を手に入れた！！";
             document.getElementById("text004").textContent = up1+"防御力が上がった！！";
-            tink.de += up1;
+            tink.de += up1 * defence_up;
           }
           tink.mo -= cost;
         }
@@ -564,10 +584,12 @@
         if( tink.mo >= cost5 ) {
           var up2 = stage * 6 * 5;
           if( flag_s == 2 ) {
+            up2 *= attack_up;
             document.getElementById("text003").textContent = "剣を５本手に入れた！！";
             document.getElementById("text004").textContent = up2+"攻撃力が上がった！！";
             tink.at += up2;
           } else if( flag_s == 4 ) {
+            up2 *= defence_up;
             document.getElementById("text003").textContent = "盾を５個手に入れた！！";
             document.getElementById("text004").textContent = up2+"防御力が上がった！！";
             tink.de += up2;
@@ -583,7 +605,7 @@
 
     function inn() {
       if( tink.mo >= cost ) {
-        var hpup = tink.le * 50;
+        var hpup = tink.le * 50 * hp_up;
         document.getElementById("text003").textContent = "宿屋で体を休めた";
         document.getElementById("text004").textContent = hpup+"体力が回復した！！";
         tink.hp += hpup;
@@ -638,9 +660,9 @@
         if( tink.ex >= exe_point + 40 ) {
           tink.le += 1;
           exe_point += tink.le * tink.le * 30;
-          tink.hp += tink.le * 50;
-          tink.ap += tink.le * 10;
-          tink.de += tink.le * 5;
+          tink.hp += tink.le * 50 * hp_up;
+          tink.ap += tink.le * 10 * attack_up;
+          tink.de += tink.le * 5 * defence_up;
           document.getElementById("text005").textContent = "レベルが上がった！！ "+tink.le+"レベルになった！！";
         }
         else {
@@ -667,7 +689,7 @@
         }
         else if( sumE > 21 ) {
           document.getElementById("text004").textContent = "自分合計:"+sumT+"相手合計:"+sumE+"\n勝ちました！！　お金が２倍！！";
-          tink.mo *= 2;
+          tink.mo *= 2 * money_up;
           flag_mode = 0;
         }
         else if( sumE >= sumT ) {
@@ -677,7 +699,7 @@
           flag_mode = 0;
         } else {
           document.getElementById("text004").textContent = "自分合計:"+sumT+"相手合計:"+sumE+"\n勝ちました！！　お金が２倍！！";
-          tink.mo *= 2;
+          tink.mo *= 2 * money_up;
           flag_mode = 0;
         }
       }
