@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>webpages Unity C# 例</title>
+  </head>
+  <body>
+    <font size=8><a href="../index.html">Return to INDEX</a></font>
+    <h1>webpages Unity C# 例<h1>
+    <p>
+      空のオブジェクトを作成して、このスクリプトをつける<br>
+      その後、空のオブジェクトのスクリプトに、objectを指定する
+    </p>
+    <font size=6>
+    <pre>
+    <code>
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ObjectGenerator : MonoBehaviour {
+  public GameObject object;  //外部読み込み
+  void Start () {
+    /* なし（消しても良い） */
+  }
+  void Update () {
+    if (Input.touchCount > 0) { //タッチした時
+      GameObject obj = Instantiate (object) as GameObject;
+      float px = Random.Range (-8.0f, 8.0f);
+      float py = Random.Range (-8.0f, 8.0f);
+      obj.transform.position = new Vector3 (px, 2.0f, 0.0f);
+    }
+  }
+}
+    </code>
+    </pre>
+  </font>
+    <font size=8><a href="../index.html">Return to INDEX</a></font>
+  </body>
+</html>
