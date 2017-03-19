@@ -8,7 +8,7 @@ div {
     left: 10px;
     top: 500px;
     width: 600px;
-    height: 380px;
+    height: 420px;
     background-color: #88FF88;
 }
 #panel_restart {
@@ -19,7 +19,7 @@ div {
 }
 #panel_return {
     left: 10px;
-    top: 900px;
+    top: 1100px;
     width: 600px;
     height: 80px;
     background-color: #FF8888;
