@@ -4,6 +4,12 @@ body {
 div {
     position: absolute;
 }
+#canvas {
+    left: 120px;
+    top: 80px;
+    width: 400px;
+    height: 400px;
+}
 #panel_button {
     left: 10px;
     top: 500px;
@@ -13,6 +19,12 @@ div {
 }
 #panel_restart {
     left: 700px;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+}
+#panel_points {
+    left: 560px;
     top: 100px;
     width: 200px;
     height: 200px;

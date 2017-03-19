@@ -8,8 +8,10 @@
   </head>
   <body>
     <h1>壁か自分自身に当たると、ゲームオーバー</h1>
-    <canvas id="field" width="600" height="400" style="background:#cccccc">
-    </canvas>
+    <div id="canvas">
+      <canvas id="field" width="400" height="400" style="background:#ccccFF">
+      </canvas>
+  </div>
     <div id="panel_button">
       <button id="button1" class="button" style="WIDTH: 200px; HEIGHT: 140px; position: absolute; right: 400px; top: 140px;"><h1>左</h1></button>
       <button id="button2" class="button" style="WIDTH: 200px; HEIGHT: 140px; position: absolute; right: 200px; top: 0px;"><h1>上</h1></button>
@@ -18,6 +20,9 @@
     </div>
     <div id="panel_restart">
       <button id="restart" class="button" style="WIDTH: 200px; HEIGHT: 400px;"><h1>リスタート</h1></button>
+    </div>
+    <div id="panel_points">
+      <font size=8><p id="points">0</p></font>
     </div>
     <div id="panel_return">
       <font size=8><a href="../index.html">Return to INDEX</a></font>
