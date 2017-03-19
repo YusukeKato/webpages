@@ -6,13 +6,13 @@ div {
 }
 #canvas {
     left: 120px;
-    top: 160px;
+    top: 200px;
     width: 400px;
     height: 400px;
 }
 #panel_button {
     left: 10px;
-    top: 580px;
+    top: 620px;
     width: 600px;
     height: 420px;
     background-color: #88FF88;
