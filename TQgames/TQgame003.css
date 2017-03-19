@@ -1,0 +1,13 @@
+body {
+    background-color: #FFFFFF;
+}
+div {
+    position: absolute;
+}
+#panel_return {
+    left: 20px;
+    top: 100px;
+    width: 600px;
+    height: 80px;
+    background-color: #FF8888;
+}
