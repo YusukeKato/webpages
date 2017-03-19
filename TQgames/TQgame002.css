@@ -1,0 +1,33 @@
+body {
+    background-color: #FFFFFF;
+}
+div {
+    position: absolute;
+}
+#panel_button {
+    left: 10px;
+    top: 500px;
+    width: 600px;
+    height: 380px;
+    background-color: #88FF88;
+}
+#panel_restart {
+    left: 700px;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+}
+#panel_return {
+    left: 10px;
+    top: 900px;
+    width: 600px;
+    height: 80px;
+    background-color: #FF8888;
+}
+
+#panel_result {
+    left: 20px;
+    top: 100px;
+    width: 600px;
+    height: 100px;
+}
