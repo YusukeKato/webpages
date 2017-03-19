@@ -1,0 +1,45 @@
+body {
+    background-color: #FFFFFF;
+}
+div {
+    position: absolute;
+}
+#canvas {
+    left: 120px;
+    top: 200px;
+    width: 400px;
+    height: 400px;
+}
+#panel_button {
+    left: 10px;
+    top: 620px;
+    width: 600px;
+    height: 420px;
+    background-color: #88FF88;
+}
+#panel_restart {
+    left: 700px;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+}
+#panel_points {
+    left: 560px;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+}
+#panel_return {
+    left: 10px;
+    top: 1100px;
+    width: 600px;
+    height: 80px;
+    background-color: #FF8888;
+}
+
+#panel_result {
+    left: 20px;
+    top: 100px;
+    width: 600px;
+    height: 100px;
+}
