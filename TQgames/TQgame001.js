@@ -110,6 +110,7 @@
         tink.na = "村人";
       }
       stage = 1;
+      exe_point = 1;
     }
 
     flag1Button.onclick = () => {//ボタン１が押された
@@ -316,86 +317,186 @@
       if( flag_mao ) {
         document.getElementById("text003").textContent = "魔王";
         var ele = 100;
-        var ehp = 10000;
-        var eat = 5000;
-        var ede = 5000;
-        var emo = 100000;
-        var eex = 10000;
+        var ehp = 100000;
+        var eat = 50000;
+        var ede = 500000;
+        var emo = 1000000;
+        var eex = 100000;
         var enemy = new Chara("魔王",ele,ehp,eat,ede,emo,eex);
       }
       else if( flag_dragon ) {
         document.getElementById("text003").textContent = "ドラゴン";
         var ele = 30;
-        var ehp = 1000;
-        var eat = 500;
-        var ede = 500;
-        var emo = 5000;
-        var eex = 1000;
+        var ehp = 10000;
+        var eat = 1000;
+        var ede = 10000;
+        var emo = 50000;
+        var eex = 10000;
         var enemy = new Chara("やみつきドラゴン",ele,ehp,eat,ede,emo,eex);
         flag_dragon = false;
       }
       else if( flag_teki ) {
         document.getElementById("text003").textContent = "例のあいつ";
         var ele = 50;
-        var ehp = 5000;
-        var eat = 1000;
-        var ede = 1000;
-        var emo = 10000;
-        var eex = 3000;
+        var ehp = 50000;
+        var eat = 10000;
+        var ede = 100000;
+        var emo = 100000;
+        var eex = 30000;
         var enemy = new Chara("例のあいつ",ele,ehp,eat,ede,emo,eex);
         flag_teki = false;
       }
-      else if( rand == 0 || rand == 1 ) {
+      else if( rand == 0 || rand == 1 && stage <= 3 ) {
+        document.getElementById("text003").textContent = "駆け出し勇者タナカ";
+        var ele = Math.floor( Math.random() * tink.le * 10 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * tink.le * 50 ) + tink.le * 50;
+        var eat = Math.floor( Math.random() * tink.le * 30 ) + tink.le * 30;
+        var ede = Math.floor( Math.random() * tink.le * 30 ) + tink.le * 30;
+        var emo = Math.floor( Math.random() * tink.le * 500 ) + tink.le * 500;
+        var eex = Math.floor( Math.random() * tink.le * tink.le * 30 ) + tink.le * tink.le * 30;
+        var enemy = new Chara("駆け出し勇者タナカ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand == 0 || rand == 1 && stage <= 6 ) {
         document.getElementById("text003").textContent = "勇者タナカ";
         var ele = Math.floor( Math.random() * tink.le * 10 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * tink.le * 40 ) + tink.le * 40;
-        var eat = Math.floor( Math.random() * tink.le * 20 ) + tink.le * 30;
-        var ede = Math.floor( Math.random() * tink.le * 20 ) + tink.le * 20;
-        var emo = Math.floor( Math.random() * tink.le * 1000 ) + tink.le * 1000;
+        var ehp = Math.floor( Math.random() * tink.le * 200 ) + tink.le * 200;
+        var eat = Math.floor( Math.random() * tink.le * 100 ) + tink.le * 100;
+        var ede = Math.floor( Math.random() * tink.le * 100 ) + tink.le * 100;
+        var emo = Math.floor( Math.random() * tink.le * 500 ) + tink.le * 500;
         var eex = Math.floor( Math.random() * tink.le * tink.le * 30 ) + tink.le * tink.le * 30;
         var enemy = new Chara("勇者タナカ",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 10 ) {
+      else if( rand == 0 || rand == 1 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "勇者王タナカ";
+        var ele = Math.floor( Math.random() * tink.le * 10 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * tink.le * 1000 ) + tink.le * 1000;
+        var eat = Math.floor( Math.random() * tink.le * 400 ) + tink.le * 400;
+        var ede = Math.floor( Math.random() * tink.le * 500 ) + tink.le * 500;
+        var emo = Math.floor( Math.random() * tink.le * 500 ) + tink.le * 500;
+        var eex = Math.floor( Math.random() * tink.le * tink.le * 30 ) + tink.le * tink.le * 30;
+        var enemy = new Chara("勇者王タナカ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 10 && stage <= 3 ) {
         document.getElementById("text003").textContent = "DJ.コマツナ";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 25 + ele * 2;
-        var eat = Math.floor( Math.random() * stage * 20 ) + stage * 30 + ele;
-        var ede = Math.floor( Math.random() * stage * 5 ) + stage * 10 + ele;
+        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 30;
+        var eat = Math.floor( Math.random() * stage * 30 ) + stage * 40;
+        var ede = Math.floor( Math.random() * stage * 20 ) + stage * 20;
         var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
         var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 5;
         var enemy = new Chara("DJ.コマツナ",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 18 ) {
+      else if( rand <= 10 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "DJ.コマツナハカセ";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 80 ) + stage * 60;
+        var eat = Math.floor( Math.random() * stage * 60 ) + stage * 100;
+        var ede = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
+        var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 5;
+        var enemy = new Chara("DJ.コマツナハカセ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 10 ) {
+        document.getElementById("text003").textContent = "DJ.コマツナキング";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var eat = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var ede = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
+        var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 5;
+        var enemy = new Chara("DJ.コマツナキング",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 18 && stage <= 3 ) {
         document.getElementById("text003").textContent = "空飛ぶシイタケ";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 40;
-        var eat = Math.floor( Math.random() * stage * 15 ) + stage * 20;
-        var ede = Math.floor( Math.random() * stage * 10 ) + stage * 10;
+        var eat = Math.floor( Math.random() * stage * 30 ) + stage * 30;
+        var ede = Math.floor( Math.random() * stage * 20 ) + stage * 60;
         var emo = Math.floor( Math.random() * stage * 50 ) + stage * 250;
         var eex = Math.floor( Math.random() * stage * stage * 12 ) + stage * stage * 4;
-        var enemy = new Chara("DJ.コマツナ",ele,ehp,eat,ede,emo,eex);
+        var enemy = new Chara("空飛ぶシイタケ",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 24 ) {
+      else if( rand <= 18 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "空飛ぶエリンギ";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 100 ) + stage * 120;
+        var eat = Math.floor( Math.random() * stage * 60 ) + stage * 60;
+        var ede = Math.floor( Math.random() * stage * 120 ) + stage * 120;
+        var emo = Math.floor( Math.random() * stage * 50 ) + stage * 250;
+        var eex = Math.floor( Math.random() * stage * stage * 12 ) + stage * stage * 4;
+        var enemy = new Chara("空飛ぶエリンギ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 18 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "空飛ぶマツタケ";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 400 ) + stage * 300;
+        var eat = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var ede = Math.floor( Math.random() * stage * 500 ) + stage * 400;
+        var emo = Math.floor( Math.random() * stage * 50 ) + stage * 250;
+        var eex = Math.floor( Math.random() * stage * stage * 12 ) + stage * stage * 4;
+        var enemy = new Chara("空飛ぶマツタケ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 24 && stage <= 3 ) {
         document.getElementById("text003").textContent = "お金持ち";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 40;
-        var eat = Math.floor( Math.random() * stage * 15 ) + stage * 20;
+        var ehp = Math.floor( Math.random() * stage * 60 ) + stage * 60;
+        var eat = Math.floor( Math.random() * stage * 15 ) + stage * 30;
         var ede = Math.floor( Math.random() * stage * 10 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 1000 ) + stage * 1000;
         var eex = Math.floor( Math.random() * stage * stage * 12 ) + stage * stage * 4;
-        var enemy = new Chara("DJ.コマツナ",ele,ehp,eat,ede,emo,eex);
+        var enemy = new Chara("お金持ち",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 30 ) {
+      else if( rand <= 24　&& stage <= 6 ) {
+        document.getElementById("text003").textContent = "大金持ち";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 600 ) + stage * 250;
+        var eat = Math.floor( Math.random() * stage * 400 ) + stage * 120;
+        var ede = Math.floor( Math.random() * stage * 800 ) + stage * 200;
+        var emo = Math.floor( Math.random() * stage * 3000 ) + stage * 3000;
+        var eex = Math.floor( Math.random() * stage * stage * 12 ) + stage * stage * 4;
+        var enemy = new Chara("大金持ち",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 24 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "マジ大富豪";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 1000 ) + stage * 600;
+        var eat = Math.floor( Math.random() * stage * 1000 ) + stage * 400;
+        var ede = Math.floor( Math.random() * stage * 1000 ) + stage * 1000;
+        var emo = Math.floor( Math.random() * stage * 10000 ) + stage * 10000;
+        var eex = Math.floor( Math.random() * stage * stage * 12 ) + stage * stage * 4;
+        var enemy = new Chara("マジ大富豪",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 30 && stage <= 3 ) {
         document.getElementById("text003").textContent = "歩く田中";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 30;
-        var eat = Math.floor( Math.random() * stage * 10 ) + stage * 15;
-        var ede = Math.floor( Math.random() * stage * 8 ) + stage * 8;
+        var ehp = Math.floor( Math.random() * stage * 50 ) + stage * 50;
+        var eat = Math.floor( Math.random() * stage * 20 ) + stage * 20;
+        var ede = Math.floor( Math.random() * stage * 8 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 200 ) + stage * 150;
         var eex = Math.floor( Math.random() * stage * stage * 8 ) + stage * stage * 6;
         var enemy = new Chara("歩く田中",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 35 ) {
+      else if( rand <= 30 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "走る田中";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 300 ) + stage * 300;
+        var eat = Math.floor( Math.random() * stage * 300 ) + stage * 300;
+        var ede = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var emo = Math.floor( Math.random() * stage * 200 ) + stage * 150;
+        var eex = Math.floor( Math.random() * stage * stage * 8 ) + stage * stage * 6;
+        var enemy = new Chara("走る田中",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 30 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "羽ばたく田中";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 2000 ) + stage * 2500;
+        var eat = Math.floor( Math.random() * stage * 800 ) + stage * 800;
+        var ede = Math.floor( Math.random() * stage * 1000 ) + stage * 1000;
+        var emo = Math.floor( Math.random() * stage * 200 ) + stage * 150;
+        var eex = Math.floor( Math.random() * stage * stage * 8 ) + stage * stage * 6;
+        var enemy = new Chara("羽ばたく田中",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 35 && stage <= 3 ) {
         document.getElementById("text003").textContent = "昨日までの友達";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 20;
@@ -405,7 +506,27 @@
         var eex = Math.floor( Math.random() * stage * stage * 11 ) + stage * stage * 8;
         var enemy = new Chara("昨日までの友達",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 45 ) {
+      else if( rand <= 35 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "１か月前までの友達";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 500 ) + stage * 500;
+        var eat = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var ede = Math.floor( Math.random() * stage * 400 ) + stage * 400;
+        var emo = Math.floor( Math.random() * stage * 300 ) + stage * 150;
+        var eex = Math.floor( Math.random() * stage * stage * 11 ) + stage * stage * 8;
+        var enemy = new Chara("１か月前までの友達",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 35 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "去年までの友達";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 4000 ) + stage * 1200;
+        var eat = Math.floor( Math.random() * stage * 300 ) + stage * 800;
+        var ede = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var emo = Math.floor( Math.random() * stage * 300 ) + stage * 150;
+        var eex = Math.floor( Math.random() * stage * stage * 11 ) + stage * stage * 8;
+        var enemy = new Chara("去年までの友達",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 45 && stage <= 3 ) {
         document.getElementById("text003").textContent = "明日への光";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 20 ) + stage * 30;
@@ -415,7 +536,27 @@
         var eex = Math.floor( Math.random() * stage * stage * 5 ) + stage * stage * 5;
         var enemy = new Chara("明日への光",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 50 ) {
+      else if( rand <= 45 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "来年への光";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var eat = Math.floor( Math.random() * stage * 100 ) + stage * 800;
+        var ede = Math.floor( Math.random() * stage * 100 ) + stage * 100;
+        var emo = Math.floor( Math.random() * stage * 80 ) + stage * 220;
+        var eex = Math.floor( Math.random() * stage * stage * 5 ) + stage * stage * 5;
+        var enemy = new Chara("来年への光",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 45 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "１００年後への光";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 400 ) + stage * 400;
+        var eat = Math.floor( Math.random() * stage * 1000 ) + stage * 1500;
+        var ede = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var emo = Math.floor( Math.random() * stage * 80 ) + stage * 220;
+        var eex = Math.floor( Math.random() * stage * stage * 5 ) + stage * stage * 5;
+        var enemy = new Chara("未来への光",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 50 && stage <= 3 ) {
         document.getElementById("text003").textContent = "５本脚のトナカイ";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 14 ) + stage * 30;
@@ -425,17 +566,57 @@
         var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 10;
         var enemy = new Chara("５本脚のトナカイ",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 60 ) {
-        document.getElementById("text003").textContent = "雪でできた男";
+      else if( rand <= 50 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "６本脚のトナカイ";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 500 ) + stage * 500;
+        var eat = Math.floor( Math.random() * stage * 500 ) + stage * 200;
+        var ede = Math.floor( Math.random() * stage * 200 ) + stage * 100;
+        var emo = Math.floor( Math.random() * stage * 150 ) + stage * 180;
+        var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 10;
+        var enemy = new Chara("６本脚のトナカイ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 50 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "１００本脚のトナカイ";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 4000 ) + stage * 2000;
+        var eat = Math.floor( Math.random() * stage * 100 ) + stage * 2000;
+        var ede = Math.floor( Math.random() * stage * 2000 ) + stage * 1000;
+        var emo = Math.floor( Math.random() * stage * 150 ) + stage * 180;
+        var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 10;
+        var enemy = new Chara("１００本脚のトナカイ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 60 && stage <= 3 ) {
+        document.getElementById("text003").textContent = "砂でできた男";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 40 ) + stage * 20;
         var eat = Math.floor( Math.random() * stage * 12 ) + stage * 18;
         var ede = Math.floor( Math.random() * stage * 5 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 150 ) + stage * 150;
         var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 5;
+        var enemy = new Chara("砂でできた男",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 60 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "雪でできた男";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 500 ) + stage * 300;
+        var eat = Math.floor( Math.random() * stage * 600 ) + stage * 600;
+        var ede = Math.floor( Math.random() * stage * 100 ) + stage * 100;
+        var emo = Math.floor( Math.random() * stage * 150 ) + stage * 150;
+        var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 5;
         var enemy = new Chara("雪でできた男",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 65 ) {
+      else if( rand <= 60 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "溶岩でできた男";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 1200 ) + stage * 1500;
+        var eat = Math.floor( Math.random() * stage * 3000 ) + stage * 3000;
+        var ede = Math.floor( Math.random() * stage * 100 ) + stage * 100;
+        var emo = Math.floor( Math.random() * stage * 150 ) + stage * 150;
+        var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 5;
+        var enemy = new Chara("溶岩でできた男",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 65 && stage <= 3 ) {
         document.getElementById("text003").textContent = "夏場のサンタ";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 15 ) + stage * 26;
@@ -445,7 +626,27 @@
         var eex = Math.floor( Math.random() * stage * stage * 8 ) + stage * stage * 8;
         var enemy = new Chara("夏場のサンタ",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 77 ) {
+      else if( rand <= 65 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "秋場のサンタ";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 600 ) + stage * 500;
+        var eat = Math.floor( Math.random() * stage * 250 ) + stage * 250;
+        var ede = Math.floor( Math.random() * stage * 400 ) + stage * 400;
+        var emo = Math.floor( Math.random() * stage * 200 ) + stage * 400;
+        var eex = Math.floor( Math.random() * stage * stage * 8 ) + stage * stage * 8;
+        var enemy = new Chara("秋場のサンタ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 65 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "冬場のサンタ";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 3000 ) + stage * 3000;
+        var eat = Math.floor( Math.random() * stage * 2000 ) + stage * 2000;
+        var ede = Math.floor( Math.random() * stage * 5000 ) + stage * 5000;
+        var emo = Math.floor( Math.random() * stage * 200 ) + stage * 400;
+        var eex = Math.floor( Math.random() * stage * stage * 8 ) + stage * stage * 8;
+        var enemy = new Chara("冬場のサンタ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 77 && stege <= 3 ) {
         document.getElementById("text003").textContent = "欲張りガール";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 30 ) + stage * 20;
@@ -455,17 +656,57 @@
         var eex = Math.floor( Math.random() * stage * stage * 5 ) + stage * stage * 5;
         var enemy = new Chara("欲張りガール",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 85 ) {
-        document.getElementById("text003").textContent = "何でも屋";
+      else if( rand <= 77 && stege <= 6 ) {
+        document.getElementById("text003").textContent = "欲張りレディ";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 300 ) + stage * 500;
+        var eat = Math.floor( Math.random() * stage * 200 ) + stage * 400;
+        var ede = Math.floor( Math.random() * stage * 800 ) + stage * 800;
+        var emo = Math.floor( Math.random() * stage * 200 ) + stage * 300;
+        var eex = Math.floor( Math.random() * stage * stage * 5 ) + stage * stage * 5;
+        var enemy = new Chara("欲張りレディ",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 77 && stege <= 10 ) {
+        document.getElementById("text003").textContent = "欲張りクイーン";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 4000 ) + stage * 2200;
+        var eat = Math.floor( Math.random() * stage * 3000 ) + stage * 1200;
+        var ede = Math.floor( Math.random() * stage * 2000 ) + stage * 1000;
+        var emo = Math.floor( Math.random() * stage * 200 ) + stage * 300;
+        var eex = Math.floor( Math.random() * stage * stage * 5 ) + stage * stage * 5;
+        var enemy = new Chara("欲張りクイーン",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 85 && stage <= 3 ) {
+        document.getElementById("text003").textContent = "何でも屋１号";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 30 ) + stage * 20;
         var eat = Math.floor( Math.random() * stage * 15 ) + stage * 20;
         var ede = Math.floor( Math.random() * stage * 10 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
         var eex = Math.floor( Math.random() * stage * stage * 2 ) + stage * stage * 10;
-        var enemy = new Chara("何でも屋",ele,ehp,eat,ede,emo,eex);
+        var enemy = new Chara("何でも屋１号",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 90 ) {
+      else if( rand <= 85 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "何でも屋２号";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 100 ) + stage * 1000;
+        var eat = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var ede = Math.floor( Math.random() * stage * 200 ) + stage * 200;
+        var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
+        var eex = Math.floor( Math.random() * stage * stage * 2 ) + stage * stage * 10;
+        var enemy = new Chara("何でも屋２号",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 85 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "何でも屋３号";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 100 ) + stage * 10000;
+        var eat = Math.floor( Math.random() * stage * 100 ) + stage * 1000;
+        var ede = Math.floor( Math.random() * stage * 100 ) + stage * 2000;
+        var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
+        var eex = Math.floor( Math.random() * stage * stage * 2 ) + stage * stage * 10;
+        var enemy = new Chara("何でも屋３号",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 90 && stage <= 3 ) {
         document.getElementById("text003").textContent = "夢見る悪魔";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 30 ) + stage * 30;
@@ -475,17 +716,57 @@
         var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 12;
         var enemy = new Chara("夢見る悪魔",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 92 ) {
-        document.getElementById("text003").textContent = "今世紀最強の騎士";
+      else if( rand <= 90 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "想像する悪魔";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 1000 ) + stage * 1000;
+        var eat = Math.floor( Math.random() * stage * 800 ) + stage * 600;
+        var ede = Math.floor( Math.random() * stage * 5 ) + stage * 5;
+        var emo = Math.floor( Math.random() * stage * 300 ) + stage * 300;
+        var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 12;
+        var enemy = new Chara("想像する悪魔",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 90 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "妄想する悪魔";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 5000 ) + stage * 5000;
+        var eat = Math.floor( Math.random() * stage * 2500 ) + stage * 2500;
+        var ede = Math.floor( Math.random() * stage * 5000 ) + stage * 5000;
+        var emo = Math.floor( Math.random() * stage * 300 ) + stage * 300;
+        var eex = Math.floor( Math.random() * stage * stage * 10 ) + stage * stage * 12;
+        var enemy = new Chara("妄想する悪魔",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 92 && stage <= 3 ) {
+        document.getElementById("text003").textContent = "最強の騎士";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 40 ) + stage * 50;
         var eat = Math.floor( Math.random() * stage * 50 ) + stage * 20;
         var ede = Math.floor( Math.random() * stage * 20 ) + stage * 20;
         var emo = Math.floor( Math.random() * stage * 500 ) + stage * 500;
         var eex = Math.floor( Math.random() * stage * stage * 20 ) + stage * stage * 20;
-        var enemy = new Chara("夢見る悪魔",ele,ehp,eat,ede,emo,eex);
+        var enemy = new Chara("最強の騎士",ele,ehp,eat,ede,emo,eex);
       }
-      else if( rand <= 96 ) {
+      else if( rand <= 92 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "王国最強の騎士";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 1000 ) + stage * 1000;
+        var eat = Math.floor( Math.random() * stage * 1000 ) + stage * 1000;
+        var ede = Math.floor( Math.random() * stage * 2000 ) + stage * 2000;
+        var emo = Math.floor( Math.random() * stage * 500 ) + stage * 500;
+        var eex = Math.floor( Math.random() * stage * stage * 20 ) + stage * stage * 20;
+        var enemy = new Chara("王国最強の騎士",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 92 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "今世紀最強の騎士";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 10000 ) + stage * 10000;
+        var eat = Math.floor( Math.random() * stage * 3000 ) + stage * 3000;
+        var ede = Math.floor( Math.random() * stage * 10000 ) + stage * 10000;
+        var emo = Math.floor( Math.random() * stage * 500 ) + stage * 500;
+        var eex = Math.floor( Math.random() * stage * stage * 20 ) + stage * stage * 20;
+        var enemy = new Chara("今世紀最強の騎士",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 96 && stage <= 3 ) {
         document.getElementById("text003").textContent = "眠る魔女";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
         var ehp = Math.floor( Math.random() * stage * 10 ) + stage * 60;
@@ -493,13 +774,33 @@
         var ede = Math.floor( Math.random() * stage * 10 ) + stage * 10;
         var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
         var eex = Math.floor( Math.random() * stage * stage * 12 ) + stage * stage * 12;
-        var enemy = new Chara("夢見る悪魔",ele,ehp,eat,ede,emo,eex);
+        var enemy = new Chara("眠る魔女",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 96 && stage <= 6 ) {
+        document.getElementById("text003").textContent = "浅い眠りの魔女";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 1000 ) + stage * 1000;
+        var eat = Math.floor( Math.random() * stage * 100 ) + stage * 100;
+        var ede = Math.floor( Math.random() * stage * 100 ) + stage * 100;
+        var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
+        var eex = Math.floor( Math.random() * stage * stage * 12 ) + stage * stage * 12;
+        var enemy = new Chara("浅い眠りの魔女",ele,ehp,eat,ede,emo,eex);
+      }
+      else if( rand <= 96 && stage <= 10 ) {
+        document.getElementById("text003").textContent = "深い眠りの魔女";
+        var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
+        var ehp = Math.floor( Math.random() * stage * 6000 ) + stage * 6000;
+        var eat = Math.floor( Math.random() * stage * 300 ) + stage * 300;
+        var ede = Math.floor( Math.random() * stage * 100 ) + stage * 100;
+        var emo = Math.floor( Math.random() * stage * 100 ) + stage * 200;
+        var eex = Math.floor( Math.random() * stage * stage * 12 ) + stage * stage * 12;
+        var enemy = new Chara("深い眠りの魔女",ele,ehp,eat,ede,emo,eex);
       }
       else {
         document.getElementById("text003").textContent = "ワカメマン";
         var ele = Math.floor( Math.random() * stage * 5 ) + tink.le * 1;
-        var ehp = Math.floor( Math.random() * stage * 15 ) + stage * 25;
-        var eat = Math.floor( Math.random() * stage * 15 ) + stage * 10;
+        var ehp = Math.floor( Math.random() * stage * 1 ) + stage * 1;
+        var eat = Math.floor( Math.random() * stage * 1 ) + stage * 1;
         var ede = Math.floor( Math.random() * stage * 1 ) + stage * 1;
         var emo = Math.floor( Math.random() * stage * 100 ) + stage * 150;
         var eex = Math.floor( Math.random() * stage * stage * 5 ) + stage * stage * 5;
