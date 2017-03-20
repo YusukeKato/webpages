@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8"></meta>
+    <title>webpages github</title>
+  </head>
+  <body>
+    <h1>webpages github<h1>
+    <font size=8><a href="index.html">Return to INDEX</a></font>
+    <font size=6>
+    <pre>
+==================================================
+デスクトップアプリもある
+==================================================
+リポジトリ作成 -> githubの案内に従って、初回のpush
+git add file_name （変更全部の場合： [--all]　便利 ）
+git commit -m "コメント" （ -m は、コメントのオプション）
+git push origin branch_name （ origin は、デフォルトのリポジトリ名(URL?) ）
+==================================================
+add       - リポジトリ変更情報をインデックスへ ステージング
+commit    - リポジトリのインデックスに追加された変更をコメントをつけてコミット
+push      - ローカルのコミットをリモートのリポジトリに反映
+pull      - リモートからローカル
+branch    - ブランチ表示　引数にブランチ名でブランチ作成
+checkout  - 引数にブランチ名で、そのブランチに移動
+merge     - 引数にブランチ名で、そのブランチの内容を取り込む
+            （ローカルとリモートで同じ個所を書き換えていると、コンフリクト）
+==================================================
+＜web公開＞
+方法１のほうが楽
+（方法１）master branch で公開
+[docs]という名前のフォルダを作成、そこに公開するファイルを入れる
+setting -> GitHub Pages -> Source のタブ　-> master branch/docs folder -> save
+（方法２）
+[gh-pages]ブランチを作成
+==================================================
+    </pre>
+    </font>
+    <font size=8><a href="index.html">Return to INDEX</a></font>
+  </body>
+</html>
